@@ -5,8 +5,10 @@ import VueRouter from 'vue-router';
 import App from './App';
 import Home from './Home.vue';
 import Towatchlist from './Towatchlist.vue';
+import axios from 'axios';
 
 Vue.use(VueRouter);
+// Vue.use(axios);
 
 const routes = [
   { path: '/', component: Home},
