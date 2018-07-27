@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h1>Add movies to your list</h1>
     <input type="text" class="towatch-input" placeholder="Movies to watch" v-model="newTowatch" @keyup.enter="addTowatch">
     <!-- v-model directive to create two-way data bindings on form input and textarea elements.
     It automatically picks the correct way to update the element based on the input type.  -->

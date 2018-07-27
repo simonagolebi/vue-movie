@@ -5,28 +5,84 @@ import VueRouter from 'vue-router';
 import App from './App';
 import Home from './Home.vue';
 import Towatchlist from './Towatchlist.vue';
+import Login from './components/Login';
+import SignUp from './components/SignUp';
 import axios from 'axios';
+import firebase from 'firebase';
+
+Vue.config.productionTip = false
+// Initialize Firebase
+let app;
+let config = {
+  apiKey: "AIzaSyCsnmtrgAaPsI6Y3H0YXBMEDEdz7ImYjZY",
+  authDomain: "vue-movie-firebase.firebaseapp.com",
+  databaseURL: "https://vue-movie-firebase.firebaseio.com",
+  projectId: "vue-movie-firebase",
+  storageBucket: "",
+  messagingSenderId: "752625808450"
+};
+firebase.initializeApp(config);
 
 Vue.use(VueRouter);
-// Vue.use(axios);
-
-const routes = [
-  { path: '/', component: Home},
-  { path: '/towatchlist', component: Towatchlist}
-];
 
 const router = new VueRouter({
-  routes, // short for `routes: routes`
+  routes: [
+    {
+      path: '*',
+      redirect: '/login'
+    },
+    {
+      path: '/',
+      redirect: '/login'
+    },
+    {
+      path: '/home',
+      name: 'Home',
+      component: Home,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/towatchlist',
+      component: Towatchlist,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/login',
+      name: 'Login',
+      component: Login
+    },
+    {
+      path: '/sign-up',
+      name: 'SignUp',
+      component: SignUp
+    }
+  ],
   mode: 'history'
 })
 
-Vue.config.productionTip = false
 
+router.beforeEach((to, from, next) => {
+  let user = firebase.auth().currentUser;
+  let requiresAuth = to.matched.some(record => record.meta.requiresAuth);
+
+  if (requiresAuth && !user) next('login');
+  else if (!requiresAuth && user) next('home');
+  else next();
+})
+
+firebase.auth().onAuthStateChanged(function(user) {
+  if (!app) {
+    app = new Vue({
+      el: '#app',
+      router,
+      components: { App },
+      template: '<App/>',
+      render: h=> h(App)
+    });
+  }
+})
 /* eslint-disable no-new */
-new Vue({
-  el: '#app',
-  router,
-  components: { App },
-  template: '<App/>',
-  render: h=> h(App)
-});

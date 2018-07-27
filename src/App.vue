@@ -1,8 +1,9 @@
 <template>
   <div id="app"class="container">
     <my-header></my-header>
-    <div class="logo-container">
+    <div class="app-container">
       <router-view></router-view>
+      <!-- <login></login> -->
     </div>
 
     <my-footer></my-footer>
@@ -10,6 +11,7 @@
 </template>
 
 <script>
+import Login from './components/Login'
 import TowatchList from './components/TowatchList'
 import MovieList from './components/MovieList'
 import MyHeader from './components/MyHeader'
@@ -18,6 +20,7 @@ import MyFooter from './components/MyFooter'
 export default {
   name: 'App',
   components: {
+    Login,
     TowatchList,
     MovieList,
     MyHeader,
