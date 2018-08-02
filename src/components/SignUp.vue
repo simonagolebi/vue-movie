@@ -1,12 +1,14 @@
 <template lang="html">
-  <div class="sign-up">
-    <h3>Create a new account!</h3>
-    <div class="sign-up-form">
-      <input type="text" v-model="email" placeholder="Email">
-      <input type="password" v-model="password" placeholder="Password">
-      <button v-on:click="signUp">Sign Up</button>
+  <div class="background-container">
+    <div class="sign-up box box-shadow-effect">
+      <h3 class="sign-up__header">Create a new account</h3>
+      <div class="sign-up-form">
+        <input type="text" v-model="email" placeholder="Email">
+        <input type="password" v-model="password" placeholder="Password">
+        <button v-on:click="signUp">Sign Up</button>
+      </div>
+      <span>or go back to <router-link to="/login" class="link">login</router-link></span>
     </div>
-    <span>or go back to <router-link to="/login">login</router-link></span>
   </div>
 </template>
 
@@ -37,9 +39,25 @@ export default {
 </script>
 
 <style scoped lang="scss">
+  .background-container {
+    position: absolute;
+    margin: 0 auto;
+    width: 100%;
+    height: 230px;
+    background: #27C4E8;
+  }
   .sign-up {
     margin: 40px auto;
     text-align: center;
+    padding: 60px 0;
+    width: 600px;
+    background: #81E1FF;
+    &__header {
+      font-size: 24px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #FFA807;
+    }
   }
   input {
     width: 300px;
@@ -48,7 +66,7 @@ export default {
     margin: 15px auto;
     display: block;
     background: #ffffff;
-    border: 2px solid #6921bc;
+    border: 2px solid #FFA807;
     border-radius: 3px;
 
     &:focus {
@@ -65,17 +83,64 @@ export default {
     text-align: center;
     margin: 20px auto;
     color: #ffffff;
-    background: #84A2D5;
+    background: #FFA807;
     border: none;
     outline: none;
     padding: 7px 5px;
     font-weight: bold;
     text-transform: uppercase;
     border-radius: 3px;
+    font-size: 12px;
+    &:hover {
+      border: none;
+      background: #ffbb3f;
+      color: #ffffff;
+    }
   }
   span {
     display: block;
     margin-top: 20px;
     font-size: 11px;
+  }
+  .link {
+    text-decoration: none;
+    color: #FFA807;
+    font-weight: bold;
+    &:hover {
+      color: #ffbb3f;
+      font-weight: bold;
+    }
+  }
+  .box-shadow-effect
+  {
+      position:relative;
+      -webkit-box-shadow:0 0px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.05) inset;
+         -moz-box-shadow:0 0px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.05) inset;
+              box-shadow:0 0px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.05) inset;
+  }
+  .box-shadow-effect:before, .box-shadow-effect:after
+  {
+      content:"";
+      position:absolute;
+      z-index:-1;
+      -webkit-box-shadow:0 0 20px rgba(0,0,0,0.8);
+      -moz-box-shadow:0 0 20px rgba(0,0,0,0.8);
+      box-shadow:0 0 20px rgba(0,0,0,0.8);
+      top:0;
+      bottom:0;
+      left:10px;
+      right:10px;
+      -moz-border-radius:100px / 10px;
+      border-radius:100px / 10px;
+  }
+  .box-shadow-effect:after
+  {
+      right:10px;
+      left:auto;
+      -webkit-transform:skew(8deg) rotate(3deg);
+         -moz-transform:skew(8deg) rotate(3deg);
+          -ms-transform:skew(8deg) rotate(3deg);
+           -o-transform:skew(8deg) rotate(3deg);
+              transform:skew(8deg) rotate(3deg);
   }
 </style>

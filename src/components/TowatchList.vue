@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="watch-list-form">
     <h1>Add movies to your list</h1>
     <input type="text" class="towatch-input" placeholder="Movies to watch" v-model="newTowatch" @keyup.enter="addTowatch">
     <!-- v-model directive to create two-way data bindings on form input and textarea elements.
@@ -144,6 +144,11 @@ export default {
 </script>
 
 <style lang="scss">
+  .watch-list-form {
+    width: 800px;
+    margin: 40px auto;
+    height: 100%;
+  }
   .towatch-input {
     width: 100%;
     padding: 10px 18px;

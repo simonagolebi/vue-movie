@@ -1,8 +1,8 @@
 <template>
   <header class="vue-header">
     <div class="app-container__wrapper">
-      <img src="../assets/film.svg" class="app-container__wrapper__icon">
-      <div class="app-container__wrapper__name">Movie-Vue</div>
+      <!-- <img src="../assets/film.svg" class="app-container__wrapper__icon"> -->
+      <!-- <div class="app-container__wrapper__name">Movie-Vue</div> -->
     </div>
     <div class="app-container__wrapper__routes">
       <router-link to="/">Home</router-link>
@@ -27,13 +27,14 @@
   .vue-header {
     height: 50px;
     // box-shadow: 0px -7px 5px 8px #6921bc;
-    background: linear-gradient(to right, #6921bc , #5935dd, #b280ed);
+    // background: linear-gradient(to right, #6921bc , #5935dd, #b280ed);
+    background: linear-gradient(to right, #FFA807, #f9b027, #fcbd46);
   }
   .app-container {
     // display: inline-block;
-    width: 800px;
-    margin: 40px auto;
-    height: 100%;
+    // width: 800px;
+    // margin: 40px auto;
+    // height: 100%;
     h1 {
       text-transform: uppercase;
       font-size: 25px;
@@ -62,22 +63,22 @@
         display: inline-block;
         float: right;
         position: relative;
-        top: 5px;
+        top: 17px;
         right: 20px;
         a {
-          color: #ffffff;
           text-decoration: none;
-          font-size: 14px;
+          font-size: 12px;
           margin: 0 5px 0px 0;
           padding: 2px 5px;
-          border: 2px solid #ffffff;
           border-radius: 3px;
           cursor: pointer;
+          text-transform: lowercase;
+          color: #ffffff;
 
           &:hover{
-            background: #ffffff;
-            color: rgba(105,33,188, 0.7);
-            font-weight: bold;
+            // background: #ffffff;
+            // color: rgba(105,33,188, 0.7);
+            // font-weight: bold;
           }
 
           &:last-child{

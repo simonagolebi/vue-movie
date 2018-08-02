@@ -1,12 +1,16 @@
 <template>
   <div id="app"class="container">
-    <my-header></my-header>
+    <head>
+      <link href="https://fonts.googleapis.com/css?family=Oxygen" rel="stylesheet">
+    </head>
+    <router-view class="" name="header"></router-view>
     <div class="app-container">
+      <router-view class="" name="home"></router-view>
+      <router-view class="" name="watchlist"></router-view>
       <router-view></router-view>
-      <!-- <login></login> -->
     </div>
 
-    <my-footer></my-footer>
+    <router-view class="" name="footer"></router-view>
   </div>
 </template>
 
@@ -20,7 +24,7 @@ import MyFooter from './components/MyFooter'
 export default {
   name: 'App',
   components: {
-    Login,
+    // Login,
     TowatchList,
     MovieList,
     MyHeader,
@@ -33,6 +37,8 @@ export default {
 * {
   box-sizing: border-box;
   margin: 0;
+  font-family: 'Oxygen', sans-serif;
+  font-size: 14px;
 }
 .container {
  margin: 0 auto;

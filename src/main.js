@@ -1,14 +1,19 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue';
+import Vuex from 'vuex';
 import VueRouter from 'vue-router';
 import App from './App';
 import Home from './Home.vue';
 import Towatchlist from './Towatchlist.vue';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
+import MyHeader from './components/MyHeader';
+import MyFooter from './components/MyFooter';
 import axios from 'axios';
 import firebase from 'firebase';
+import $ from 'jquery';
+
 
 Vue.config.productionTip = false
 // Initialize Firebase
@@ -39,6 +44,11 @@ const router = new VueRouter({
       path: '/home',
       name: 'Home',
       component: Home,
+      components: {
+        header: MyHeader,
+        home: Home,
+        footer: MyFooter
+      },
       meta: {
         requiresAuth: true
       }
@@ -46,6 +56,11 @@ const router = new VueRouter({
     {
       path: '/towatchlist',
       component: Towatchlist,
+      components: {
+        header: MyHeader,
+        watchlist: Towatchlist,
+        footer: MyFooter
+      },
       meta: {
         requiresAuth: true
       }
