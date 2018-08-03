@@ -1,6 +1,6 @@
 <template>
   <div class="watch-list-form">
-    <h1>Add movies to your list</h1>
+    <h1>Create your list</h1>
     <input type="text" class="towatch-input" placeholder="Movies to watch" v-model="newTowatch" @keyup.enter="addTowatch">
     <!-- v-model directive to create two-way data bindings on form input and textarea elements.
     It automatically picks the correct way to update the element based on the input type.  -->
@@ -21,7 +21,7 @@
     </div>
     <div class="extra-container">
       <div><label><input type="checkbox" :checked="!anyRemaining" @change="checkAllTodos"> Check All</label></div>
-      <div>{{ remaining }} items left</div>
+      <div>{{ remaining }} movies</div>
     </div>
 
     <div class="extra-container">
@@ -145,15 +145,39 @@ export default {
 
 <style lang="scss">
   .watch-list-form {
-    width: 800px;
+    width: 40%;
+    width: 40%;
     margin: 40px auto;
-    height: 100%;
+    display: inline-block;
+    margin-left: 6%;
+
+    ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+      color: #fff;
+      opacity: 0.5;
+    }
+    ::-moz-placeholder { /* Firefox 19+ */
+      color: #fff;
+      opacity: 0.5;
+    }
+    :-ms-input-placeholder { /* IE 10+ */
+      color: #fff;
+      opacity: 0.5;
+    }
+    :-moz-placeholder { /* Firefox 18- */
+      color: #fff;
+      opacity: 0.5;
+    }
   }
   .towatch-input {
     width: 100%;
     padding: 10px 18px;
     font-size: 18px;
     margin-bottom: 16px;
+    background: transparent;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-bottom: 1px solid #27C4E8;
 
     &:focus {
       outline: 0;
@@ -179,19 +203,21 @@ export default {
   }
   .towatch-item-label {
     padding: 10px;
-    border: 1px solid white;
     margin-left: 12px;
       &:focus {
         outline: 0;
       }
     }
   .towatch-item-edit {
-    font-size: 24px;
+    font-size: 14px;
     color: #2c3e50;
     margin-left: 12px;
-    width: 100%;
+    width: 100;
+    background: transparent;
+    border-top: none;
+    border-right: none;
+    border-left: none;
     padding: 10px;
-    border: 2px solid #6921bc;
 
     &:focus {
       outline: 0;
@@ -199,30 +225,29 @@ export default {
   }
   .completed {
     text-decoration: line-through;
-    color: grey;
+    color: #27C4E8;
   }
   .extra-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
     font-size: 16px;
-    border-top: 1px solid lightgrey;
+    border-top: 1px solid #27C4E8;
     padding-top: 14px;
     margin-bottom: 14px;
   }
 
   button {
     font-size: 14px;
-    background-color: white;
+    background-color: transparent;
     appearance: none;
     border: none;
-    padding: 3px 6px;
+    padding: 1px 0;
+    margin-right: 5px;
     cursor: pointer;
 
     &:hover {
-      background: #ffffff;
-      border: 2px solid #6921bc;
-      color: #000000;
+      color: #ffffff;
     }
 
     &:focus {
@@ -231,9 +256,8 @@ export default {
   }
 
   .active {
-    background: #ffffff;
-    border: 2px solid #6921bc;
-    color: #000000;
+    color: #ffffff;
+    border-bottom: 1px solid #fff;
   }
 
   .fade-enter-active, .fade-leave-active {

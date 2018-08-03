@@ -6,11 +6,11 @@
     <router-view class="" name="header"></router-view>
     <div class="app-container">
       <router-view class="" name="home"></router-view>
-      <router-view class="" name="watchlist"></router-view>
+      <!-- <router-view class="" name="watchlist"></router-view> -->
       <router-view></router-view>
     </div>
 
-    <router-view class="" name="footer"></router-view>
+    <!-- <router-view class="" name="footer"></router-view> -->
   </div>
 </template>
 

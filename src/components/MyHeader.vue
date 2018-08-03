@@ -6,7 +6,7 @@
     </div>
     <div class="app-container__wrapper__routes">
       <router-link to="/">Home</router-link>
-      <router-link to="/towatchlist">Watch-List</router-link>
+      <!-- <router-link to="/towatchlist">Watch-List</router-link> -->
       <a v-on:click="logout">Logout</a>
     </div>
   </header>
@@ -26,15 +26,10 @@
 <style lang="scss">
   .vue-header {
     height: 50px;
-    // box-shadow: 0px -7px 5px 8px #6921bc;
-    // background: linear-gradient(to right, #6921bc , #5935dd, #b280ed);
     background: linear-gradient(to right, #FFA807, #f9b027, #fcbd46);
   }
   .app-container {
-    // display: inline-block;
-    // width: 800px;
-    // margin: 40px auto;
-    // height: 100%;
+
     h1 {
       text-transform: uppercase;
       font-size: 25px;
@@ -76,9 +71,7 @@
           color: #ffffff;
 
           &:hover{
-            // background: #ffffff;
-            // color: rgba(105,33,188, 0.7);
-            // font-weight: bold;
+            font-weight: bold;
           }
 
           &:last-child{

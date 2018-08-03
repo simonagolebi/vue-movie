@@ -26,32 +26,29 @@
                   <button id="submit-form">Submit</button>
                 </div>
               </div> -->
+              <button v-if="showAddToMovieListButton" @click="addToMovieList" id="addMovieToList">Add to Movie List</button>
       </form>
-      <!-- <button v-on:click="logout">Logout</button> -->
+      <towatch-list></towatch-list>
     </div>
   </body>
 </template>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="crossorigin="anonymous"></script>
 <script type="text/javascript">
+import TowatchList from './TowatchList'
 import axios from 'axios';
 import firebase from 'firebase';
 import $ from 'jquery';
-// var randomMovieArray = ['Game of Thrones', 'Harry Potter', 'Lord of the Rings', 'Star Wars'];
-// var randomNumber = Math.floor((Math.random() * randomMovieArray.length - 1) + 1);
-// var randomMovie = randomMovieArray[randomNumber];
 
 export default {
+      components: {
+        TowatchList
+      },
       name: 'movie-list',
-      // compiled(){
-      //   $.on('navigation.hide', () => this.show = false)
-      //   $.on('navigation.show', () => this.show = true)
-      // },
       data () {
         return {
-          info: '',
+          // info: '',
           findMovie: '',
           movieInfoResults: '',
-          // show: true
         }
       },
       watch: {
@@ -62,6 +59,13 @@ export default {
          }
        },
      },
+       computed: {
+         showAddToMovieListButton(){
+           if (this.findMovie.length > 0){
+             return this.movieInfoResults;
+           }
+         }
+       },
        methods: {
         lookupfindMovie: function() {
           app.movieInfoResults = "Searching..."
@@ -78,79 +82,58 @@ export default {
                   app.movieInfoResults = "Not a movie"
                 })
         },
-        // logout: function() {
-        //   firebase.auth().signOut().then(() => {
-        //     this.$router.replace('login')
-        //   })
-        // }
+        addToMovieList: function() {
+          this.movieInfoResults.Title
+        }
       },
-      // mounted () {
-      //   axios
-      //   .get('http://www.omdbapi.com/?t=' + encodeURI(randomMovie) + '&apikey=991cf08e')
-      //   .then(response => (this.info = response.data.Title))
-      //   .catch(error => console.log(error))
-      // }
     }
-    $( "#submit-form" ).click(function() {
-      $( ".movie-info" ).slideDown( "slow");
-    });
+
 
 </script>
 <style lang="scss">
   .movie-list-container {
-    position: absolute;
     margin: 0 auto;
     width: 100%;
     height: 430px;
     background: linear-gradient(225deg, #FFA807, #f9b027, #fcbd46);
     background: -webkit-linear-gradient(225deg, #FFA807, #f9b027, #fcbd46);
-    animation: GradientAnimation 20s ease infinite;
-    -webkit-animation: GradientAnimation 20s ease infinite;
-    @keyframes GradientAnimation {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
-  }
-
-@-webkit-keyframes GradientAnimation {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
-  }
-    &__icon {
-      height: 420px;
-      position: absolute;
-      opacity: 0.2;
-      left: 0px;
-      z-index: 0;
-      bottom: 30px;
-      transform: skewX(-9deg);
-    }
   }
   #lead-form {
-    width: 800px;
-    margin: 40px auto;
-    height: 100%;
+    width: 40%;
+    margin: 0px auto;
+    // height: 100%;
+    display: inline-block;
+    padding-top: 40px;
+    margin: 0 0 0 6%;
+    vertical-align: top;
+    ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+      color: #fff;
+      opacity: 0.5;
+    }
+    ::-moz-placeholder { /* Firefox 19+ */
+      color: #fff;
+      opacity: 0.5;
+    }
+    :-ms-input-placeholder { /* IE 10+ */
+      color: #fff;
+      opacity: 0.5;
+    }
+    :-moz-placeholder { /* Firefox 18- */
+      color: #fff;
+      opacity: 0.5;
+    }
   }
   .search-input {
     // width: 100%;
-    width: 758px;
+    width: 90%;
     padding: 10px 18px;
     font-size: 18px;
     margin-bottom: 16px;
-    border: 2px solid #FFE68E;
+    background: transparent;
+    border-bottom: 1px solid #27C4E8;
+    border-top: none;
+    border-left: none;
+    border-right: none;
 
     &:focus {
       outline: 0;
@@ -165,9 +148,7 @@ export default {
     cursor: pointer;
 
     &:hover {
-      background: #ffffff;
-      border: 2px solid #6921bc;
-      color: #000000;
+
     }
 
     &:focus {
@@ -178,39 +159,49 @@ export default {
     display: inline-block;
   }
   #submit-form {
-    border: 2px solid #FFE68E;
     position: relative;
     bottom: 3px;
     height: 46px;
     right: 5px;
-    color: #a0edff;
-    background: #27C4E8;
+    color: #fff;
+    background: transparent;
     text-transform: uppercase;
-    font-size: 12px;
+    font-size: 16px;
     font-weight: bold;
   }
   .movie-info {
+
     &__title {
       font-size: 22px;
+      margin: 5px 0;
     }
     &__year {
       font-size: 22px;
+      margin: 5px 0;
     }
     &__genre {
       display: block;
       font-size: 16px;
+      margin: 5px 0;
     }
     &__rating {
       display: block;
       font-size: 16px;
+      margin: 5px 0;
     }
     &__plot {
       display: block;
       font-size: 16px;
+      margin: 5px 0;
     }
     &__production {
       display: block;
       font-size: 16px;
+      margin: 5px 0;
     }
+  }
+  #addMovieToList{
+    margin-top: 10px;
+    float: right;
   }
 </style>

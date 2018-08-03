@@ -59,7 +59,7 @@ export default {
       font-size: 24px;
       text-transform: uppercase;
       letter-spacing: 1px;
-      color: #27C4E8;
+      color: #636363;
     }
   }
   input {
@@ -108,7 +108,7 @@ export default {
   }
   .link {
     text-decoration: none;
-    color: #27C4E8;
+    color: #636363;
     font-weight: bold;
     &:hover {
       color: #2dd7ff;
