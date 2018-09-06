@@ -5,19 +5,24 @@
       <!-- <div class="app-container__wrapper__name">Movie-Vue</div> -->
     </div>
     <div class="app-container__wrapper__routes">
-      <router-link to="/">Home</router-link>
+      <router-link to="/" v-if="user">Home</router-link>
       <!-- <router-link to="/towatchlist">Watch-List</router-link> -->
-      <a v-on:click="logout">Logout</a>
+      <a v-on:click="logout" v-if="user">Logout</a>
     </div>
   </header>
 </template>
 <script type="text/javascript">
   import firebase from 'firebase';
   export default {
+    computed: {
+      user () {
+        return this.$store.getters.getUser;
+      }
+    },
     methods : {
       logout: function() {
         firebase.auth().signOut().then(() => {
-          this.$router.replace('login')
+          this.$router.replace('login');
         })
       }
     }

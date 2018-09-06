@@ -13,7 +13,7 @@ import MyFooter from './components/MyFooter';
 import axios from 'axios';
 import firebase from 'firebase';
 import $ from 'jquery';
-
+import { store } from './store/store';
 
 Vue.config.productionTip = false
 // Initialize Firebase
@@ -29,6 +29,9 @@ let config = {
 firebase.initializeApp(config);
 
 Vue.use(VueRouter);
+Vue.use(Vuex);
+
+export const bus = new Vue();
 
 const router = new VueRouter({
   routes: [
@@ -93,6 +96,7 @@ firebase.auth().onAuthStateChanged(function(user) {
   if (!app) {
     app = new Vue({
       el: '#app',
+      store,
       router,
       components: { App },
       template: '<App/>',

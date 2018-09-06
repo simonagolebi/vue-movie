@@ -4,7 +4,7 @@
     <input type="text" class="towatch-input" placeholder="Movies to watch" v-model="newTowatch" @keyup.enter="addTowatch">
     <!-- v-model directive to create two-way data bindings on form input and textarea elements.
     It automatically picks the correct way to update the element based on the input type.  -->
-    <div v-for="(todo, index) in towatchFiltered" :key="todo.id" class="towatch-item">
+    <div v-for="(todo, index) in towatchFiltered" :key="todo.id" :searchMovieTitle="searchMovieTitle" class="towatch-item">
       <!-- v-for directive is used to render a list of items based on an array. -->
       <div class="towatch-item-left">
         <input type="checkbox" v-model="todo.completed">
@@ -41,29 +41,64 @@
 </template>
 
 <script>
+import firebase from 'firebase';
+import $ from 'jquery';
+// import { bus } from '../main';
 export default {
   name: 'towatch-list',
+  props: ['movieListTitle'],
+  // created() {
+  //   this.searchMovieTitle = this.movieListTitle;
+  // },
   data () {
     return {
       newTowatch: '',
-      idForToWatch: 3,
+      idForToWatch: 1,
+      // idForSearchMovieTitle: 1,
       beforeEditCache: '',
       filter: 'all',
+      searchMovieTitle: this.movieListTitle,
       todos: [
-        {
-          'id': 1,
-          'title': 'Incredibles 2',
-          'completed': false,
-          'editing': false,
-        },
-        {
-          'id': 2,
-          'title': 'Jurassic World',
-          'completed': false,
-          'editing': false,
-        },
-      ]
+        // {
+        //   'id': 1,
+        //   'title': 'Incredibles 2',
+        //   'completed': false,
+        //   'editing': false,
+        // },
+        // {
+        //   'id': 2,
+        //   'title': 'Jurassic World',
+        //   'completed': false,
+        //   'editing': false,
+        // },
+      ],
     }
+  },
+  watch: {
+    movieListTitle: function () {
+      this.searchMovieTitle = this.movieListTitle;
+
+      this.todos.push({
+        title: this.searchMovieTitle,
+        completed: false,
+        id: this.idForToWatch,
+      })
+      this.searchMovieTitle = ''
+      this.idForToWatch++
+    }
+  },
+  created() {
+    if(this.searchMovieTitle.trim().length == 0){
+      return
+    }
+
+    this.todos.push({
+      title: this.searchMovieTitle,
+      completed: false,
+      id: this.idForToWatch,
+    })
+    this.searchMovieTitle = ''
+    this.idForToWatch++
   },
   directives: {
     focus: {
@@ -138,7 +173,7 @@ export default {
       this.todos = this.todos.filter(function (todo) {
         return !todo.completed;
       });
-    }
+    },
   }
 }
 </script>

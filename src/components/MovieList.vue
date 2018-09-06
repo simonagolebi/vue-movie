@@ -3,6 +3,7 @@
     <div class="movie-list-container">
       <!-- <img src="../assets/film.svg" class="movie-list-container__icon"> -->
       <!-- <p>Your movie is : {{info}}</p> -->
+      <div class="movie-list-container__user">Hello, {{email}}!</div>
       <form id="lead-form" @submit.prevent="processForm" v-on:submit: @submit>
               <h1>Find a movie</h1>
               <div>
@@ -28,16 +29,17 @@
               </div> -->
               <button v-if="showAddToMovieListButton" @click="addToMovieList" id="addMovieToList">Add to Movie List</button>
       </form>
-      <towatch-list></towatch-list>
+      <towatch-list :movieListTitle="movieListTitle"></towatch-list>
     </div>
   </body>
 </template>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="crossorigin="anonymous"></script>
 <script type="text/javascript">
-import TowatchList from './TowatchList'
+import TowatchList from './TowatchList';
 import axios from 'axios';
 import firebase from 'firebase';
 import $ from 'jquery';
+// import { bus } from '../main';
 
 export default {
       components: {
@@ -49,6 +51,11 @@ export default {
           // info: '',
           findMovie: '',
           movieInfoResults: '',
+          userId: '',
+          name: '',
+          email: '',
+          user: {},
+          movieListTitle: ''
         }
       },
       watch: {
@@ -59,6 +66,15 @@ export default {
          }
        },
      },
+     created() {
+        this.user = firebase.auth().currentUser;
+        if(this.user) {
+          this.name = this.user.displayName;
+          this.email = this.user.email;
+          this.photo = this.user.photoURL;
+          this.userId = this.user.uid;
+        }
+      },
        computed: {
          showAddToMovieListButton(){
            if (this.findMovie.length > 0){
@@ -79,11 +95,11 @@ export default {
                     app.movieInfoResults = response.data;
                 })
                 .catch(function (error) {
-                  app.movieInfoResults = "Not a movie"
+                  app.movieInfoResults = "Not a movie";
                 })
         },
-        addToMovieList: function() {
-          this.movieInfoResults.Title
+        addToMovieList: function(todo) {
+          this.movieListTitle = this.movieInfoResults.Title;
         }
       },
     }
@@ -97,6 +113,11 @@ export default {
     height: 430px;
     background: linear-gradient(225deg, #FFA807, #f9b027, #fcbd46);
     background: -webkit-linear-gradient(225deg, #FFA807, #f9b027, #fcbd46);
+
+    &__user {
+      margin: 0 0 0 6%;
+      padding-top: 20px;
+    }
   }
   #lead-form {
     width: 40%;
