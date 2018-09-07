@@ -24,7 +24,7 @@
       <div>{{ remaining }} movies</div>
     </div>
 
-    <div class="extra-container">
+    <div class="extra-container extra-container--filters">
       <div>
         <button :class="{ active: filter == 'all' }" @click="filter = 'all'">All</button>
         <button :class="{ active: filter == 'active' }" @click="filter = 'active'">To watch</button>
@@ -185,25 +185,28 @@ export default {
     margin: 40px auto;
     display: inline-block;
     margin-left: 6%;
+    background: #D0125B;
+    padding: 20px;
+    border-radius: 5px;
 
     ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-      color: #fff;
-      opacity: 0.5;
+      color: #C3C3C3;
     }
     ::-moz-placeholder { /* Firefox 19+ */
-      color: #fff;
-      opacity: 0.5;
+      color: #C3C3C3;
     }
     :-ms-input-placeholder { /* IE 10+ */
-      color: #fff;
-      opacity: 0.5;
+      color: #C3C3C3;
     }
     :-moz-placeholder { /* Firefox 18- */
-      color: #fff;
-      opacity: 0.5;
+      color: #C3C3C3;
+    }
+    h1 {
+      color: #F1B0C9;
     }
   }
   .towatch-input {
+    color: #FFFFFF;
     width: 100%;
     padding: 10px 18px;
     font-size: 18px;
@@ -212,7 +215,7 @@ export default {
     border-top: none;
     border-right: none;
     border-left: none;
-    border-bottom: 1px solid #27C4E8;
+    border-bottom: 1px solid #F1B0C9;
 
     &:focus {
       outline: 0;
@@ -267,9 +270,18 @@ export default {
     align-items: center;
     justify-content: space-between;
     font-size: 16px;
-    border-top: 1px solid #27C4E8;
+    border-top: 1px solid #F1B0C9;
     padding-top: 14px;
     margin-bottom: 14px;
+
+    &--filters {
+      button {
+        color: #F1B0C9;
+        &:hover {
+          color: #FFFFFF;
+        }
+      }
+    }
   }
 
   button {
@@ -282,7 +294,7 @@ export default {
     cursor: pointer;
 
     &:hover {
-      color: #ffffff;
+      color: #c3c3c3;
     }
 
     &:focus {
@@ -291,8 +303,8 @@ export default {
   }
 
   .active {
-    color: #ffffff;
-    border-bottom: 1px solid #fff;
+    color: #c3c3c3;
+    border-bottom: 1px solid #c3c3c3;
   }
 
   .fade-enter-active, .fade-leave-active {

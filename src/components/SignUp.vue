@@ -51,7 +51,7 @@ export default {
     text-align: center;
     padding: 60px 0;
     width: 600px;
-    background: #81E1FF;
+    background: #FFFFFF;
     &__header {
       font-size: 24px;
       text-transform: uppercase;

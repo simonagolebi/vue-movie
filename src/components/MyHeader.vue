@@ -5,7 +5,7 @@
       <!-- <div class="app-container__wrapper__name">Movie-Vue</div> -->
     </div>
     <div class="app-container__wrapper__routes">
-      <router-link to="/" v-if="user">Home</router-link>
+      <!-- <router-link to="/" v-if="user">Home</router-link> -->
       <!-- <router-link to="/towatchlist">Watch-List</router-link> -->
       <a v-on:click="logout" v-if="user">Logout</a>
     </div>
@@ -30,8 +30,6 @@
 </script>
 <style lang="scss">
   .vue-header {
-    height: 50px;
-    background: linear-gradient(to right, #FFA807, #f9b027, #fcbd46);
   }
   .app-container {
 
@@ -73,7 +71,7 @@
           border-radius: 3px;
           cursor: pointer;
           text-transform: lowercase;
-          color: #ffffff;
+          color: #c3c3c3;
 
           &:hover{
             font-weight: bold;

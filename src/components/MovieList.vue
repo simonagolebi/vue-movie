@@ -27,7 +27,7 @@
                   <button id="submit-form">Submit</button>
                 </div>
               </div> -->
-              <button v-if="showAddToMovieListButton" @click="addToMovieList" id="addMovieToList">Add to Movie List</button>
+              <button v-if="showAddToMovieListButton" @click="addToMovieList" id="addMovieToList" class="hvr-forward">Add to Movie List</button>
       </form>
       <towatch-list :movieListTitle="movieListTitle"></towatch-list>
     </div>
@@ -39,6 +39,7 @@ import TowatchList from './TowatchList';
 import axios from 'axios';
 import firebase from 'firebase';
 import $ from 'jquery';
+
 // import { bus } from '../main';
 
 export default {
@@ -109,10 +110,6 @@ export default {
 <style lang="scss">
   .movie-list-container {
     margin: 0 auto;
-    width: 100%;
-    height: 430px;
-    background: linear-gradient(225deg, #FFA807, #f9b027, #fcbd46);
-    background: -webkit-linear-gradient(225deg, #FFA807, #f9b027, #fcbd46);
 
     &__user {
       margin: 0 0 0 6%;
@@ -125,33 +122,37 @@ export default {
     // height: 100%;
     display: inline-block;
     padding-top: 40px;
-    margin: 0 0 0 6%;
+    margin: 40px 0 0 6%;
     vertical-align: top;
+    background: #4D6AEB;
+    border-radius: 5px;
+    padding: 20px;
     ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-      color: #fff;
-      opacity: 0.5;
+      color: #C3C3C3;
     }
     ::-moz-placeholder { /* Firefox 19+ */
-      color: #fff;
-      opacity: 0.5;
+      color: #C3C3C3;
     }
     :-ms-input-placeholder { /* IE 10+ */
-      color: #fff;
-      opacity: 0.5;
+      color: #C3C3C3;
     }
     :-moz-placeholder { /* Firefox 18- */
-      color: #fff;
-      opacity: 0.5;
+      color: #C3C3C3;
+    }
+
+    h1 {
+      color: #BCC3F9;
     }
   }
   .search-input {
     // width: 100%;
+    color: #FFFFFF;
     width: 90%;
     padding: 10px 18px;
     font-size: 18px;
     margin-bottom: 16px;
     background: transparent;
-    border-bottom: 1px solid #27C4E8;
+    border-bottom: 1px solid #BCC3F9;
     border-top: none;
     border-left: none;
     border-right: none;
@@ -184,7 +185,7 @@ export default {
     bottom: 3px;
     height: 46px;
     right: 5px;
-    color: #fff;
+    color: #000;
     background: transparent;
     text-transform: uppercase;
     font-size: 16px;
@@ -225,4 +226,21 @@ export default {
     margin-top: 10px;
     float: right;
   }
+
+  /* Forward */
+.hvr-forward {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+}
+.hvr-forward:hover, .hvr-forward:focus, .hvr-forward:active {
+  -webkit-transform: translateX(8px);
+  transform: translateX(8px);
+}
 </style>

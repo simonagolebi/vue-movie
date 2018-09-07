@@ -14,6 +14,9 @@ import axios from 'axios';
 import firebase from 'firebase';
 import $ from 'jquery';
 import { store } from './store/store';
+// import { FontAwesomeIcon } from '@fortawesome/fontawesome-free';
+
+// Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 Vue.config.productionTip = false
 // Initialize Firebase
